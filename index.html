@@ -3,48 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KITS IEDC | Innovation & Entrepreneurship</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script defer src="assets/js/script.js"></script>
+    <title>KITS IEDC – Empowering Innovation & Entrepreneurship</title>
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #1e1e2f, #3a3a55);
+            color: white;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            background: #22223b;
+            position: fixed;
+            transition: 0.3s;
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #44445a;
+        }
+
+        /* Sidebar Toggle */
+        .menu-btn {
+            display: none;
+            font-size: 24px;
+            background: none;
+            color: white;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: 280px;
+            padding: 20px;
+            flex: 1;
+            transition: margin-left 0.3s;
+        }
+
+        /* Banner */
+        .banner img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Sections */
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        h1, h2 {
+            color: #ffcc00;
+        }
+
+        /* Logos Section */
+        .logos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .logos img {
+            width: 150px;
+            margin: 10px;
+            filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.2));
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logos img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #22223b;
+            color: white;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 220px;
+            }
+            .content {
+                margin-left: 220px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .sidebar {
+                width: 0;
+                overflow: hidden;
+            }
+            .content {
+                margin-left: 0;
+            }
+            .menu-btn {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="Kitsiedc.png">KITS IEDC</div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
+
+    <!-- Sidebar -->
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar" id="sidebar">
+        <h2>KITS IEDC</h2>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#submit">Submit</a>
+        <a href="#events">Events</a>
+        <a href="#colab">Collaboration</a>
+        <a href="#join">Join Us</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div id="home" class="banner">
+            <img src="IMG-20240325-WA0097.jpg" alt="KITS IEDC FAMILY BANNER">
+        </div>
+
+        <!-- About Section -->
+        <div id="about" class="section">
+            <h1>About KITS IEDC</h1>
+            <p>
+                KITS IEDC is dedicated to fostering a culture of **creativity, innovation, and entrepreneurship** among students.
+                Our mission is to empower young innovators to transform their ideas into successful startups.
+            </p>
+        </div>
+
+        <!-- Logos Section -->
+        <div class="logos">
+            <img src="Kitsiedc.png" alt="KITS IEDC Logo">
+            <img src="Ksumlogo.png" alt="KSUM Logo">
+            <img src="Iedc-logo.png" alt="IEDC Logo">
+        </div>
+
+        <!-- Submit Section -->
+        <div id="submit" class="section">
+            <h2>Submit Your Ideas</h2>
+            <p>We encourage students to submit their startup ideas and innovative projects.</p>
+        </div>
+
+        <!-- Events Section -->
+        <div id="events" class="section">
+            <h2>Upcoming Events</h2>
+            <ul>
+                <li>🚀 Hackathon - March 2025</li>
+                <li>💡 Innovation Workshop - April 2025</li>
+                <li>📢 Entrepreneurship Meetup - May 2025</li>
             </ul>
-            <div class="menu-toggle">&#9776;</div>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1><col="black">Empowering Innovation</col></h1>
-        <p>Join KITS IEDC and be a part of the future.</p>
-        <a href="about.html" class="btn">Learn More</a>
-    </section>
-
-    <section class="features">
-        <div class="feature">
-            <h2>Hackathons & Events</h2>
-            <p>Join exciting competitions and network with industry leaders.</p>
         </div>
-        <div class="feature">
-            <h2>Innovative Projects</h2>
-            <p>Work on cutting-edge projects that make a difference.</p>
-        </div>
-        <div class="feature">
-            <h2>Startup Support</h2>
-            <p>Get mentorship and funding opportunities.</p>
-        </div>
-    </section>
 
-    <footer>
-        <p>&copy; 2025 KITS IEDC. All Rights Reserved.</p>
-    </footer>
+        <!-- Collaboration Section -->
+        <div id="colab" class="section">
+            <h2>Collaborate with Us</h2>
+            <p>Partner with KITS IEDC to drive innovation and build the next generation of startups.</p>
+        </div>
+
+        <!-- Join Section -->
+        <div id="join" class="section">
+            <h2>Join Us!</h2>
+            <p>Join KITS IEDC today and embark on your journey of **innovation and success**.</p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 KITS IEDC. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            if (sidebar.style.width === "220px") {
+                sidebar.style.width = "0";
+            } else {
+                sidebar.style.width = "220px";
+            }
+        }
+    </script>
+
 </body>
 </html>
