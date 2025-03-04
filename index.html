@@ -3,243 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KITS IEDC – Empowering Innovation & Entrepreneurship</title>
+    <title>KITS IEDC - Innovation & Entrepreneurship</title>
     <style>
-        /* Reset Styles */
+        /* Global Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
+            font-family: "Poppins", sans-serif;
         }
 
+        /* Page Background */
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #1e1e2f, #3a3a55);
-            color: white;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #333;
             display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            height: 100vh;
-            background: #22223b;
+        /* Title Bar (Header) */
+        .title-bar {
+            width: 100%;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             position: fixed;
-            transition: 0.3s;
-            padding-top: 20px;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            top: 0;
+            z-index: 100;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Logo Styling */
+        .logo img {
+            height: 40px;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 270px;
+            height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            position: fixed;
+            top: 0;
+            left: -270px;
+            padding: 20px;
+            transition: left 0.4s ease-in-out;
+            box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 0 15px 15px 0;
+            z-index: 200;
+        }
+
+        /* Sidebar Active */
+        .sidebar.active {
+            left: 0;
+        }
+
+        /* Sidebar Links */
+        .nav-links {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .nav-links li {
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* Menu Toggle Button */
+        .menu-toggle {
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: black;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            padding: 80px 50px 50px;
+            transition: margin-left 0.4s ease-in-out;
             overflow-y: auto;
         }
 
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #ffcc00;
+        /* Content Shift When Sidebar Opens */
+        .main-content.shift {
+            margin-left: 270px;
         }
 
-        .sidebar a {
-            display: block;
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-            font-size: 18px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
-        }
-
-        .sidebar a:hover {
-            background: #44445a;
-        }
-
-        /* Sidebar Toggle */
-        .menu-btn {
-            display: none;
-            font-size: 24px;
-            background: none;
-            color: white;
-            border: none;
-            cursor: pointer;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-        }
-
-        /* Main Content */
-        .content {
-            margin-left: 280px;
-            padding: 20px;
-            flex: 1;
-            transition: margin-left 0.3s;
-        }
-
-        /* Banner */
-        .banner img {
+        /* Hero Image */
+        .hero-image {
             width: 100%;
             max-height: 400px;
             object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1s ease-in-out;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Sections */
-        .section {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out;
+        /* Content Section */
+        .content-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .section:hover {
-            transform: translateY(-5px);
+        .content-section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
         }
 
-        h1, h2 {
-            color: #ffcc00;
+        .content-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
         }
 
-        /* Logos Section */
-        .logos {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .logos img {
-            width: 150px;
-            margin: 10px;
-            filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.2));
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .logos img:hover {
-            transform: scale(1.1);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #22223b;
+        /* Footer Section - Dark Theme */
+        .footer {
+            background: #222;
             color: white;
-            margin-top: 30px;
-            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            margin-top: auto;
+            font-size: 14px;
+            border-top: 1px solid #444;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 900px) {
+        /* Responsive Styles */
+        @media (max-width: 768px) {
             .sidebar {
-                width: 220px;
+                width: 230px;
+                left: -230px;
             }
-            .content {
-                margin-left: 220px;
-            }
-        }
 
-        @media (max-width: 700px) {
-            .sidebar {
-                width: 0;
-                overflow: hidden;
+            .sidebar.active {
+                left: 0;
             }
-            .content {
-                margin-left: 0;
+
+            .main-content.shift {
+                margin-left: 230px;
             }
-            .menu-btn {
-                display: block;
+
+            .main-content {
+                padding: 80px 30px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar -->
-    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <!-- Title Bar -->
+    <div class="title-bar">
+        <div class="logo">
+            <img src="Kitsiedc.png" alt="KITS IEDC">
+        </div>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+    </div>
+
+    <!-- Sidebar Navigation -->
     <div class="sidebar" id="sidebar">
-        <h2>KITS IEDC</h2>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#submit">Submit</a>
-        <a href="#events">Events</a>
-        <a href="#colab">Collaboration</a>
-        <a href="#join">Join Us</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="submit.html">Submit Idea</a></li>
+            <li><a href="event.html">Events</a></li>
+            <li><a href="collab.html">Collab With Us</a></li>
+            <li><a href="join.html">Join KITS IEDC</a></li>
+        </ul>
     </div>
 
     <!-- Main Content -->
-    <div class="content">
-        <div id="home" class="banner">
-            <img src="IMG-20240325-WA0097.jpg" alt="KITS IEDC FAMILY BANNER">
+    <div class="main-content" id="main-content">
+        <!-- Hero Image -->
+        <img src="img3.jpg" alt="KITS IEDC" class="hero-image">
+
+        <!-- About KITS IEDC -->
+        <div class="content-section">
+            <h2>Welcome to KITS IEDC</h2>
         </div>
 
-        <!-- About Section -->
-        <div id="about" class="section">
-            <h1>About KITS IEDC</h1>
+        <div class="content-section">
+            <h2>OUR AIM</h2>
             <p>
-                KITS IEDC is dedicated to fostering a culture of creativity, innovation, and entrepreneurship among students.
-                Our mission is to empower young innovators to transform their ideas into successful startups.
+                KITS IEDC (Innovation and Entrepreneurship Development Center) is dedicated to fostering a culture of innovation, creativity, and entrepreneurship among students at KITS College. Our primary aim is to empower aspiring entrepreneurs by providing the necessary resources, mentorship, and technical support to transform their innovative ideas into successful ventures. With the backing of Kerala Startup Mission (KSUM) and the IEDC framework, we strive to create a dynamic ecosystem that bridges the gap between academics and industry. Through various programs, workshops, and startup incubation initiatives, we aim to nurture problem-solving skills, encourage research-driven innovation, and develop future leaders who can contribute to the startup ecosystem and economic growth.
             </p>
         </div>
 
-        <!-- Logos Section -->
-        <div class="logos">
-            <img src="Kitsiedc.png" alt="KITS IEDC Logo">
-            <img src="Ksumlogo.png" alt="KSUM Logo">
-            <img src="Iedc-logo.png" alt="IEDC Logo">
+        <div class="content-section">
+            <h2>OUR VISION</h2>
+            <p>
+                Our vision at KITS IEDC is to establish KITS College as a leading hub for innovation and entrepreneurship by fostering a startup-friendly environment where students can develop groundbreaking solutions to real-world challenges. We envision a future where every student has the opportunity to explore their entrepreneurial potential, gain hands-on experience in business development, and collaborate with industry experts to bring their ideas to life. By leveraging the resources of KSUM and the IEDC network, we aspire to create an ecosystem where innovation thrives, startups flourish, and students gain the confidence to launch their own successful enterprises. Our long-term vision is to contribute to India’s growing startup landscape by producing innovative thinkers and changemakers who will drive technological and economic advancements.
+            </p>
         </div>
-
-        <!-- Submit Section -->
-        <div id="submit" class="section">
-            <h2>Submit Your Ideas</h2>
-            <p>We encourage students to submit their startup ideas and innovative projects.</p>
+        <div class="content-section">
+            <h2>OUR PURPOSE</h2>
+            <style> h2{text-align:center;}</style>
+            <P>
+                KITS IEDC serves as a catalyst for innovation, empowering students with the knowledge, skills, and opportunities required to build successful startups. Our purpose is to provide a structured platform where students can ideate, experiment, and execute their entrepreneurial ambitions with guidance from mentors, industry experts, and startup incubators. By organizing hackathons, startup boot camps, ideation challenges, and hands-on training sessions, we encourage students to develop creative problem-solving abilities and business acumen. Through collaboration with Kerala Startup Mission (KSUM) and IEDC, we provide access to funding opportunities, networking events, and technical support that help students navigate the challenges of entrepreneurship. Ultimately, our goal is to cultivate a culture of innovation, inspire the next generation of entrepreneurs, and contribute to the development of a sustainable and inclusive startup ecosystem.
+            </P>
         </div>
-
-        <!-- Events Section -->
-        <div id="events" class="section">
-            <h2>Upcoming Events</h2>
-            <ul>
-                <li>🚀 Hackathon - March 2025</li>
-                <li>💡 Innovation Workshop - April 2025</li>
-                <li>📢 Entrepreneurship Meetup - May 2025</li>
-            </ul>
+        <div class="content-section">
+            <h2>FEATURES</h2>
+            <P>
+                <strong>200+</strong><br>Kits IEDC Member's<br>  </br><strong>2+</strong><br>Industry Partner's<br>   <br><strong>30+</strong><br>Event's Conducted
+                
+            </P>
         </div>
-
-        <!-- Collaboration Section -->
-        <div id="colab" class="section">
-            <h2>Collaborate with Us</h2>
-            <p>Partner with KITS IEDC to drive innovation and build the next generation of startups.</p>
+        <div class="content-section">
+            <h2>PROGRAMS</h2>
+            <P>
+                KITS IEDC offers a diverse range of programs designed to inspire and equip students with entrepreneurial skills, technical expertise, and leadership capabilities. Our programs include startup incubation, business mentorship, technical skill development, hackathons, and funding support to help students transform their innovative ideas into viable businesses. Through structured workshops, hands-on training, and interactive sessions with successful entrepreneurs and industry leaders, we create an ecosystem where students can experiment, learn, and grow. The pre-incubation and acceleration programs guide students from ideation to execution, ensuring they have access to market insights, investor connections, and technology resources. With the support of Kerala Startup Mission (KSUM) and IEDC, we bridge the gap between academics and real-world startup challenges, empowering students to launch and scale sustainable ventures.
+            </P>
         </div>
-
-        <!-- Join Section -->
-        <div id="join" class="section">
-            <h2>Join Us!</h2>
-            <p>Join KITS IEDC today and embark on your journey of innovation and success.</p>
+        <div class="content-section">
+            <h2>INITIATIVES</h2>
+            <P>
+                KITS IEDC drives multiple initiatives aimed at fostering innovation, research, and entrepreneurship among students. Our flagship initiatives include startup boot camps, ideation challenges, women entrepreneurship programs, and industry collaboration projects that provide hands-on exposure to real-world problem-solving. We actively organize hackathons, prototype-building competitions, and technology-driven innovation labs to encourage students to work on groundbreaking solutions. Additionally, we promote social entrepreneurship initiatives that focus on sustainability, rural development, and community-driven projects. Through partnerships with KSUM, leading startups, and industry experts, we provide students with access to mentorship, funding opportunities, and networking platforms. Our goal is to create a thriving entrepreneurial culture at KITS College, where students are encouraged to think big, innovate boldly, and contribute to the growth of India's startup ecosystem.
+            </P>
         </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2025 KITS IEDC. All Rights Reserved.</p>
-        </footer>
     </div>
 
+    <!-- Footer -->
+<!-- Footer Section -->
+<footer class="footer">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center;">
+        <div style="margin-bottom: 10px;">
+            <strong>Contact Us</strong>
+        </div>
+        <div style="margin-bottom: 5px;">
+            <strong>Email:</strong> 
+            <a href="mailto:kitsiedc@gmail.com" style="color: #f8f9fa; text-decoration: none;">
+                kitsiedc@gmail.com
+            </a>
+        </div>
+        <div style="margin-bottom: 5px;">
+            <strong>Address:</strong><br>
+            Kottayam Institute of Technology and Science,<br>
+            Chengalam East PO, 686585<br>
+            Pallickathodu, Kerala, India
+        </div>
+        <div style="margin-bottom: 5px;">
+            <strong>Phone:</strong><br>
+            1234567890 | 1234567890 | 1234567890 | 1234567890
+        </div>
+        <div style="margin-top: 10px;">
+            <a href="https://www.instagram.com/kitsiedc?igsh=MTN2OGFqNzQ4cDhtbg==" 
+               target="_blank" style="text-decoration: none; color: #f8f9fa;">
+                <img src="insta.png" alt="Instagram" 
+                     style="height: 24px; vertical-align: middle; margin-right: 5px;">
+                @kitsiedc
+            </a>
+        </div>
+        <div style="margin-top: 10px; font-size: 12px; color: #aaa;">
+            &copy; 2025 KITS IEDC. All rights reserved.
+        </div>
+    </div>
+</footer>
     <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById("sidebar");
-            if (sidebar.style.width === "220px") {
-                sidebar.style.width = "0";
+        // Sidebar Toggle Functionality
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            let sidebar = document.getElementById("sidebar");
+            let mainContent = document.getElementById("main-content");
+
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                mainContent.classList.add("shift");
             } else {
-                sidebar.style.width = "220px";
+                mainContent.classList.remove("shift");
             }
-        }
+        });
     </script>
 
 </body>
