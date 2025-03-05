@@ -23,25 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* Title Bar (Header) */
-        .title-bar {
-            width: 100%;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: fixed;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Logo Styling */
-        .logo img {
-            height: 40px;
-        }
-
         /* Sidebar Navigation */
         .sidebar {
             width: 270px;
@@ -57,7 +38,6 @@
             z-index: 200;
         }
 
-        /* Sidebar Active */
         .sidebar.active {
             left: 0;
         }
@@ -87,15 +67,6 @@
             transform: scale(1.05);
         }
 
-        /* Menu Toggle Button */
-        .menu-toggle {
-            font-size: 30px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: black;
-        }
-
         /* Main Content Area */
         .main-content {
             flex: 1;
@@ -104,86 +75,48 @@
             overflow-y: auto;
         }
 
-        /* Content Shift When Sidebar Opens */
         .main-content.shift {
             margin-left: 270px;
         }
 
-        /* Hero Image */
-        .hero-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Content Section */
-        .content-section {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .content-section h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        /* Event Images Grid */
+        /* Image Styling */
         .event-gallery {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 15px;
-            margin-top: 10px;
+            justify-content: center;
+            margin-top: 15px;
         }
 
         .event-gallery img {
             width: 200px;
             height: 150px;
             object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .event-gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Footer Section */
-        .footer {
-            background: #222;
+        /* Load More Button */
+        .load-more {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 16px;
             color: white;
-            padding: 15px;
-            text-align: center;
-            margin-top: auto;
-            font-size: 14px;
-            border-top: 1px solid #444;
+            background: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 230px;
-                left: -230px;
-            }
+        .load-more:hover {
+            background: #0056b3;
+        }
 
-            .sidebar.active {
-                left: 0;
-            }
-
-            .main-content.shift {
-                margin-left: 230px;
-            }
-
-            .main-content {
-                padding: 80px 30px;
-            }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -224,12 +157,13 @@
         <div class="content-section">
             <h2>EVENTS CONDUCTED</h2>
             <div class="event-gallery" id="conducted-events"></div>
+            <button class="load-more" id="load-more-btn">Load More</button>
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        &copy; 2025 KITS IEDC. All rights reserved.
+        <p>&copy; 2025 KITS IEDC. All rights reserved.</p>
     </footer>
 
     <script>
@@ -246,22 +180,63 @@
             }
         });
 
-        // Load event images dynamically
-        const upcomingEvents = ["upcoming1.jpg", "upcoming2.jpg"];
-        const conductedEvents = ["conducted1.jpg", "conducted2.jpg"];
+        // Load event images
+        const upcomingImages = [
+            "res/upcoming/event1.jpg",
+            "res/upcoming/event2.png",
+            "res/upcoming/event3.jpeg"
+        ];
 
-        function loadEventImages(eventArray, containerId) {
-            const container = document.getElementById(containerId);
-            eventArray.forEach(imgSrc => {
-                let img = document.createElement("img");
-                img.src = imgSrc;
-                img.alt = "Event Image";
-                container.appendChild(img);
+        const conductedImages = [
+            "res/conducted/event1.jpg",
+            "res/conducted/event2.png",
+            "res/conducted/event3.jpeg",
+            "res/conducted/event4.jpg",
+            "res/conducted/event5.png",
+            "res/conducted/event6.jpeg",
+            "res/conducted/event7.jpg",
+            "res/conducted/event8.png",
+            "res/conducted/event9.jpeg"
+        ];
+
+        const upcomingContainer = document.getElementById("upcoming-events");
+        const conductedContainer = document.getElementById("conducted-events");
+        const loadMoreBtn = document.getElementById("load-more-btn");
+
+        // Load images dynamically
+        function loadImages(imageArray, container) {
+            imageArray.forEach(imgSrc => {
+                let imgElement = document.createElement("img");
+                imgElement.src = imgSrc;
+                imgElement.alt = "Event Image";
+                container.appendChild(imgElement);
             });
         }
 
-        loadEventImages(upcomingEvents, "upcoming-events");
-        loadEventImages(conductedEvents, "conducted-events");
+        // Load all upcoming images immediately
+        loadImages(upcomingImages, upcomingContainer);
+
+        // Load first 5 conducted images
+        let currentIndex = 0;
+        function loadMoreImages() {
+            const maxLoad = 5;
+            let endIndex = currentIndex + maxLoad;
+            let imagesToLoad = conductedImages.slice(currentIndex, endIndex);
+
+            loadImages(imagesToLoad, conductedContainer);
+            currentIndex = endIndex;
+
+            // Hide button if all images are loaded
+            if (currentIndex >= conductedImages.length) {
+                loadMoreBtn.classList.add("hidden");
+            }
+        }
+
+        // Load first 5 images on page load
+        loadMoreImages();
+
+        // Load more on button click
+        loadMoreBtn.addEventListener("click", loadMoreImages);
     </script>
 
 </body>
