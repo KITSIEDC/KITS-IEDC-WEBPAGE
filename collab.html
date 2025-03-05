@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KITS IEDC - Innovation & Entrepreneurship</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Page Background */
+        body {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Title Bar (Header) */
+        .title-bar {
+            width: 100%;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Logo Styling */
+        .logo img {
+            height: 40px;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 270px;
+            height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            position: fixed;
+            top: 0;
+            left: -270px;
+            padding: 20px;
+            transition: left 0.4s ease-in-out;
+            box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 0 15px 15px 0;
+            z-index: 200;
+        }
+
+        /* Sidebar Active */
+        .sidebar.active {
+            left: 0;
+        }
+
+        /* Sidebar Links */
+        .nav-links {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .nav-links li {
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* Menu Toggle Button */
+        .menu-toggle {
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: black;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            padding: 80px 50px 50px;
+            transition: margin-left 0.4s ease-in-out;
+            overflow-y: auto;
+        }
+
+        /* Content Shift When Sidebar Opens */
+        .main-content.shift {
+            margin-left: 270px;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Content Section */
+        .content-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .content-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Footer Section - Dark Theme */
+        .footer {
+            background: #222;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin-top: auto;
+            font-size: 14px;
+            border-top: 1px solid #444;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 230px;
+                left: -230px;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .main-content.shift {
+                margin-left: 230px;
+            }
+
+            .main-content {
+                padding: 80px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Title Bar -->
+    <div class="title-bar">
+        <div class="logo">
+            <img src="Kitsiedc.png" alt="KITS IEDC">
+        </div>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="submit.html">Submit Idea</a></li>
+            <li><a href="event.html">Events</a></li>
+            <li><a href="collab.html">Collab With Us</a></li>
+            <li><a href="join.html">Join KITS IEDC</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <!-- Hero Image -->
+        <img src="collab.jpg" alt="KITS IEDC" class="hero-image">
+
+        <!-- About KITS IEDC -->
+        <div class="content-section">
+            <h2>COLLABORATE WITH US</h2>
+            <style> h2{
+              text-align: center;
+            } </style>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+<!-- Footer Section -->
+<footer class="footer">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center;">
+        <div style="margin-bottom: 10px;">
+            <strong>Contact Us</strong>
+        </div>
+        <div style="margin-bottom: 5px;">
+            <strong>Email:</strong> 
+            <a href="mailto:kitsiedc@gmail.com" style="color: #f8f9fa; text-decoration: none;">
+                kitsiedc@gmail.com
+            </a>
+        </div>
+        <div style="margin-bottom: 5px;">
+            <strong>Address:</strong><br>
+            Kottayam Institute of Technology and Science,<br>
+            Chengalam East PO, 686585<br>
+            Pallickathodu, Kerala, India
+        </div>
+        <div style="margin-bottom: 5px;">
+            <strong>Phone:</strong><br>
+            9744174961 | 9495916810 | 9605441461 | 9562141845
+        </div>
+        <div style="margin-top: 10px;">
+            <a href="https://www.instagram.com/kitsiedc?igsh=MTN2OGFqNzQ4cDhtbg==" 
+               target="_blank" style="text-decoration: none; color: #f8f9fa;">
+                <img src="insta.png" alt="Instagram" 
+                     style="height: 24px; vertical-align: middle; margin-right: 5px;">
+                @kitsiedc
+            </a>
+        </div>
+        <div style="margin-top: 10px; font-size: 12px; color: #aaa;">
+            &copy; 2025 KITS IEDC. All rights reserved.
+        </div>
+    </div>
+</footer>
+    <script>
+        // Sidebar Toggle Functionality
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            let sidebar = document.getElementById("sidebar");
+            let mainContent = document.getElementById("main-content");
+
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                mainContent.classList.add("shift");
+            } else {
+                mainContent.classList.remove("shift");
+            }
+        });
+    </script>
+
+</body>
+</html>
