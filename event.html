@@ -125,6 +125,7 @@
             border-radius: 15px;
             margin-top: 20px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .content-section h2 {
@@ -132,13 +133,29 @@
             margin-bottom: 10px;
         }
 
-        .content-section p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #555;
+        /* Event Images Grid */
+        .event-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
         }
 
-        /* Footer Section - Dark Theme */
+        .event-gallery img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .event-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer Section */
         .footer {
             background: #222;
             color: white;
@@ -197,55 +214,24 @@
         <!-- Hero Image -->
         <img src="event.jpg" alt="KITS IEDC" class="hero-image">
 
-        <!-- About KITS IEDC -->
+        <!-- Upcoming Events -->
         <div class="content-section">
-            <h2>UPCOMING EVENT'S</h2>
-            <style> h2{
-              text-align: center;
-            } </style>
+            <h2>UPCOMING EVENTS</h2>
+            <div class="event-gallery" id="upcoming-events"></div>
         </div>
-      <div class="content-section">
-        <h2>EVENT'S CONDUCTED</h2>
-      </div>
 
+        <!-- Conducted Events -->
+        <div class="content-section">
+            <h2>EVENTS CONDUCTED</h2>
+            <div class="event-gallery" id="conducted-events"></div>
+        </div>
     </div>
 
     <!-- Footer -->
-<!-- Footer Section -->
-<footer class="footer">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center;">
-        <div style="margin-bottom: 10px;">
-            <strong>Contact Us</strong>
-        </div>
-        <div style="margin-bottom: 5px;">
-            <strong>Email:</strong> 
-            <a href="mailto:kitsiedc@gmail.com" style="color: #f8f9fa; text-decoration: none;">
-                kitsiedc@gmail.com
-            </a>
-        </div>
-        <div style="margin-bottom: 5px;">
-            <strong>Address:</strong><br>
-            Kottayam Institute of Technology and Science,<br>
-            Chengalam East PO, 686585<br>
-            Pallickathodu, Kerala, India
-        </div>
-        <div style="margin-bottom: 5px;">
-            <strong>Phone:</strong><br>
-            9744174961 | 9495916810 | 9605441461 | 9562141845
-        </div>
-        <div style="margin-top: 10px;">
-            <a href="https://www.instagram.com/kitsiedc?igsh=MTN2OGFqNzQ4cDhtbg==" 
-               target="_blank" style="text-decoration: none; color: #f8f9fa;">
-                <img src="insta.png" alt="Instagram" 
-                     style="height: 24px; vertical-align: middle; margin-right: 5px;">
-                @kitsiedc
-            </a>
-        </div>
-        <div style="margin-top: 10px; font-size: 12px; color: #aaa;">
-            &copy; 2025 KITS IEDC. All rights reserved.
-        </div>
-    </div>
-</footer>
+    <footer class="footer">
+        &copy; 2025 KITS IEDC. All rights reserved.
+    </footer>
+
     <script>
         // Sidebar Toggle Functionality
         document.getElementById("menu-toggle").addEventListener("click", function () {
@@ -259,6 +245,23 @@
                 mainContent.classList.remove("shift");
             }
         });
+
+        // Load event images dynamically
+        const upcomingEvents = ["upcoming1.jpg", "upcoming2.jpg"];
+        const conductedEvents = ["conducted1.jpg", "conducted2.jpg"];
+
+        function loadEventImages(eventArray, containerId) {
+            const container = document.getElementById(containerId);
+            eventArray.forEach(imgSrc => {
+                let img = document.createElement("img");
+                img.src = imgSrc;
+                img.alt = "Event Image";
+                container.appendChild(img);
+            });
+        }
+
+        loadEventImages(upcomingEvents, "upcoming-events");
+        loadEventImages(conductedEvents, "conducted-events");
     </script>
 
 </body>
