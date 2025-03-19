@@ -126,6 +126,23 @@
             margin-top: 20px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
+             .photo-container {
+            width: 175px; /* 35mm in pixels */
+            height: 225px; /* 45mm in pixels */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white; /* White padding space */
+            border: 2px solid #000; /* Optional: Adds a border like a real passport photo */
+            border-radius: 5px; /* Optional: Slightly rounded corners */
+        }
+
+        .photo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Ensures the full image is inside */
+            background-color: white; /* Fill empty areas with white */
+        }
 
         .content-section h2 {
             font-size: 24px;
