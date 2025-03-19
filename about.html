@@ -126,22 +126,14 @@
             margin-top: 20px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
-             .photo-container {
-            width: 175px; /* 35mm in pixels */
-            height: 225px; /* 45mm in pixels */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white; /* White padding space */
-            border: 2px solid #000; /* Optional: Adds a border like a real passport photo */
-            border-radius: 5px; /* Optional: Slightly rounded corners */
+              .content {
+            max-width: 800px;
+            margin: auto;
         }
-
-        .photo-container img {
+        .image-container img {
             max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* Ensures the full image is inside */
-            background-color: white; /* Fill empty areas with white */
+            height: auto;
+            display: block; /* Ensures no extra spacing around the image */
         }
 
         .content-section h2 {
@@ -223,9 +215,9 @@
                 align:center;
                }
             </style>
-            <div class="photo-container" align="center">
-        <img src="join.jpg" align="center" alt="Passport Size Photo">
-    </div>
+            <div class="image-container" style="display: flex; justify-content: center; align-items: center;">
+            <img src="join.jpg" alt="Centered 7:9 Image" width="350" height="450">
+        </div>
         </div>
 
     </div>
