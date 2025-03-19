@@ -108,7 +108,15 @@
         .main-content.shift {
             margin-left: 270px;
         }
-
+   .flex-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adds space between items */
+  }
+  .box {
+    background: lightgray;
+    padding: 20px;
+  }
         /* Hero Image */
         .hero-image {
             width: 100%;
@@ -220,7 +228,7 @@
             <img src="res/conducted/event1.jpg" alt="Centered 7:9 Image" width="350" height="450">
         </div>
             </div>
-            <div>
+            <div class="flex-container">
             <div class="image-container" style="display: flex; justify-content: center; align-items: center;">
             <img src="res/conducted/event2.jpg" alt="Centered 7:9 Image" width="350" height="450">
         </div>
